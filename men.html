@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeans Finder - Find Your Perfect Men's Jeans</title>
+  <link rel="stylesheet" href="/assets/men.css">
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Jeans<span>Finder</span></a>
+        <div class="nav-links">
+          <a href="#features">How It Works</a>
+          <a href="#methods">Find Jeans</a>
+          <a href="#gallery">Browse Styles</a>
+          <a href="#favorites">My Saved Items</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Discover Jeans That Fit Your Body Perfectly</h1>
+      <p>Our smart technology helps find jeans styles that look great on your unique body shape - no more guesswork!</p>
+      <div>
+        <a href="#methods" class="btn">Let's Begin</a>
+        <a href="#gallery" class="btn btn-outline">See All Styles</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">What Makes Us Different</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📷</div>
+          <h3>Smart Photo Analysis</h3>
+          <p>Upload a photo and we'll figure out which jeans will flatter your body shape the most.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Simple Style Quiz</h3>
+          <p>Not comfortable sharing a photo? No problem! Our quick quiz works just as well.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛍️</div>
+          <h3>Shop With Confidence</h3>
+          <p>We'll show you where to find jeans that will actually look good on you for a change!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="methods" id="methods">
+    <div class="container">
+      <h2 class="section-title">Let's Find Your Perfect Jeans</h2>
+      <div class="method-tabs">
+        <button class="tab-btn active" onclick="openTab('photo')">Use a Photo</button>
+        <button class="tab-btn" onclick="openTab('quiz')">Quick Quiz</button>
+      </div>
+      
+      <div class="method-content">
+        <div id="photo" class="tab-content active">
+          <h3>Snap & Upload a Photo</h3>
+          <p class="privacy-note">Don't worry - we analyze your photos securely and delete them right away. We hate creepy data practices too!</p>
+          <div class="upload-area" onclick="document.getElementById('photo-upload').click()">
+            <input type="file" id="photo-upload" accept="image/*" onchange="previewImage(this)" title="Upload your photo">
+            <p>Tap here to upload your photo</p>
+            <img id="preview-image" class="upload-preview" src="#" alt="Preview">
+          </div>
+          <button class="btn" onclick="analyzePhoto()">Find My Perfect Jeans</button>
+        </div>
+        
+        <div id="quiz" class="tab-content">
+          <h3>Quick Style Questionnaire</h3>
+          <p>Just answer a few questions and we'll help you find jeans that actually fit right.</p>
+          <form id="style-quiz-form">
+            <div class="form-group">
+              <label for="body-shape">What's your body type like?</label>
+              <select id="body-shape" required>
+                <option value="">Pick the closest match...</option>
+                <option value="athletic">Athletic build (wider shoulders, narrower waist)</option>
+                <option value="rectangle">Straight up and down (similar width throughout)</option>
+                <option value="triangular">Narrower on top, wider below</option>
+                <option value="oval">Carry weight in the middle</option>
+                <option value="inverted">Broader shoulders, narrower below</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="height">How tall are you?</label>
+              <select id="height" required>
+                <option value="">Select your height range</option>
+                <option value="short">On the shorter side (under 5'8")</option>
+                <option value="average">Average height (5'8" - 5'11")</option>
+                <option value="tall">Taller guy (6' and up)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="style-pref">How do you like your jeans to fit?</label>
+              <select id="style-pref" required>
+                <option value="">Choose your preferred fit</option>
+                <option value="fitted">Closer to the body/slimmer</option>
+                <option value="regular">Not tight, not baggy</option>
+                <option value="loose">Roomier, more relaxed</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="waist-preference">Where do you like your jeans to sit?</label>
+              <select id="waist-preference" required>
+                <option value="">Pick waist position</option>
+                <option value="high">Higher (at your natural waist)</option>
+                <option value="mid">Middle (just under belly button)</option>
+                <option value="low">Lower (down on your hips)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="style-vibe">What's your overall style vibe?</label>
+              <select id="style-vibe" required>
+                <option value="">Tell us your style...</option>
+                <option value="classic">Timeless, traditional</option>
+                <option value="trendy">Up-to-date, fashion-conscious</option>
+                <option value="casual">Laid-back, everyday</option>
+                <option value="rugged">Outdoorsy, workwear inspired</option>
+              </select>
+            </div>
+            
+            <button type="button" class="btn" onclick="processQuiz()">Show Me What Works</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="results" id="results">
+        <div class="result-header">
+          <h3>Here's What Will Look Great On You</h3>
+          <p>Based on what you've told us, these styles should fit you perfectly:</p>
+        </div>
+        
+        <div class="recommendations">
+          <h4 id="recommendation-title">Straight Leg Jeans</h4>
+          <p id="recommendation-desc">This cut gives you a clean look that works really well with your body type - comfortable without looking sloppy.</p>
+          
+          <div class="jeans-grid">
+            <div class="jeans-card">
+              <img src="" alt="">
+              <div class="jeans-info">
+                <h4 class="jeans-title">Premium Straight Jeans</h4>
+                <p class="jeans-desc">Great everyday jeans with just enough stretch to keep you comfortable.</p>
+                <div class="jeans-actions">
+                  <span>$79.99</span>
+                  <button class="like-btn" onclick="toggleFavorite(this, 'Premium Straight Jeans')">❤</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="jeans-card">
+              <img src="" alt="Men's designer jeans" class="jeans-img">
+              <div class="jeans-info">
+                <h4 class="jeans-title">Designer Straight Cut</h4>
+                <p class="jeans-desc">Higher-end denim that fits perfectly and lasts forever.</p>
+                <div class="jeans-actions">
+                  <span>$129.99</span>
+                  <button class="like-btn" onclick="toggleFavorite(this, 'Designer Straight Cut')">❤</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <a href="#" class="btn shop-btn" onclick="showToast('Shopping page coming soon!'); return false;">See All Recommended Jeans</a>
+        </div>
+        
+        <button class="btn" onclick="resetRecommendation()">Start Over</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Men's Jeans Style Guide</h2>
+      <div class="jeans-grid">
+        <div class="jeans-card">
+          <img src="https://m.media-amazon.com/images/I/81+PoprbPzL._AC_UY350_.jpg" alt="Men's skinny jeans" class="jeans-img">
+          <div class="jeans-info">
+            <h4 class="jeans-title">Skinny</h4>
+            <p class="jeans-desc">Hugs your legs from top to bottom. Great for slimmer guys who want a modern look.</p>
+            <div class="jeans-actions">
+              <span class="jeans-price">$69.99</span>
+              <button class="btn" onclick="openStyleTips('skinny')">How to Wear These</button>
+              <button class="like-btn" onclick="toggleFavorite(this, 'Skinny Jeans')">❤</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="jeans-card">
+          <img src="https://assets.ajio.com/medias/sys_master/root/20230913/2m8u/6500c567ddf7791519d31619/-473Wx593H-466569239-blue-MODEL.jpg" alt="Men's straight jeans" class="jeans-img">
+          <div class="jeans-info">
+            <h4 class="jeans-title">Straight</h4>
+            <p class="jeans-desc">Same width from knee to ankle. The most versatile style that works for almost everybody.</p>
+            <div class="jeans-actions">
+              <span class="jeans-price">$74.99</span>
+              <button class="btn" onclick="openStyleTips('straight')">How to Wear These</button>
+              <button class="like-btn" onclick="toggleFavorite(this, 'Straight Jeans')">❤</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="jeans-card">
+          <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRk781APbChftF9kNM34PpXRGem-v57C-bs-FCVXsxvJNl7tpJnB1ORi2c06PB6UfDY1c33pbW5H5pv85wgtCsSfncLXjlZb9iec9UIa57RUjZMSb0g6E9HHg" alt="Men's bootcut jeans" class="jeans-img">
+          <div class="jeans-info">
+            <h4 class="jeans-title">Bootcut</h4>
+            <p class="jeans-desc">A bit wider at the bottom. Makes athletic guys look balanced and fits over your boots.</p>
+            <div class="jeans-actions">
+              <span class="jeans-price">$79.99</span>
+              <button class="btn" onclick="openStyleTips('bootcut')">How to Wear These</button>
+              <button class="like-btn" onclick="toggleFavorite(this, 'Bootcut Jeans')">❤</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="jeans-card">
+          <img src="https://images.meesho.com/images/products/472525455/47mt1_512.webp" alt="Men's wide leg jeans" class="jeans-img">
+          <div class="jeans-info">
+            <h4 class="jeans-title">Wide Leg</h4>
+            <p class="jeans-desc">Roomy from top to bottom. Super comfortable and makes a style statement.</p>
+            <div class="jeans-actions">
+              <span class="jeans-price">$84.99</span>
+              <button class="btn" onclick="openStyleTips('wide-leg')">How to Wear These</button>
+              <button class="like-btn" onclick="toggleFavorite(this, 'Wide Leg Jeans')">❤</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="jeans-card">
+          <img src="https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/27684026/2024/9/6/626b0449-2106-4b90-9155-8889c50860b31725606997433-Urbano-Fashion-Men-Loose-Fit-Non-Stretchable-Cargo-Jeans-132-6.jpg" alt="Men's relaxed jeans" class="jeans-img">
+          <div class="jeans-info">
+            <h4 class="jeans-title">Relaxed Fit</h4>
+            <p class="jeans-desc">Looser around the seat and thighs. Perfect if comfort is your top priority.</p>
+            <div class="jeans-actions">
+              <span class="jeans-price">$64.99</span>
+              <button class="btn" onclick="openStyleTips('relaxed')">How to Wear These</button>
+              <button class="like-btn" onclick="toggleFavorite(this, 'Relaxed Fit Jeans')">❤</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="jeans-card">
+          <img src="https://assets.ajio.com/medias/sys_master/root/20240513/hQnE/6641410e05ac7d77bb548287/-473Wx593H-467324135-aqua-MODEL2.jpg" alt="Men's tapered jeans" class="jeans-img">
+          <div class="jeans-info">
+            <h4 class="jeans-title">Tapered</h4>
+            <p class="jeans-desc">Roomier up top, slimmer at the ankle. Gives you comfort where you need it while still looking put-together.</p>
+            <div class="jeans-actions">
+              <span class="jeans-price">$79.99</span>
+              <button class="btn" onclick="openStyleTips('tapered')">How to Wear These</button>
+              <button class="like-btn" onclick="toggleFavorite(this, 'Tapered Jeans')">❤</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="gallery" id="favorites">
+    <div class="container">
+      <h2 class="section-title">Your Saved Jeans</h2>
+      <div id="favorites-container">
+        <p class="text">You haven't saved any favorites yet. Browse the styles above and click the heart icon to save jeans you like.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/assets/about/about.html">About Developer</a>
+        <a href="/assets/privacy policy/privacy policy.html">Privacy Policy</a>
+        <a href="/assets/terms of services/term.html">Terms of Service</a>
+        <a href="/assets/contact/contact.html">Contact Developer</a>
+      </div>
+      <p>&copy; 2025 JeansFinder. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+  <div class="modal" id="styleTipsModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()">×</button>
+      <div class="style-tips-content" id="styleTipsContent">
+        <h3>How to Style <span id="jeans-style-name">Skinny Jeans</span></h3>
+        <ul class="style-tips-list">
+          <li>Dark washes look more sleek and modern - great for evenings out.</li>
+          <li>Balance the slim bottoms with a slightly looser top or jacket.</li>
+          <li>Chelsea boots or clean white sneakers work perfectly with this style.</li>
+          <li>You should be able to pinch a little fabric - if they're too tight, size up!</li>
+          <li>Look for styles with some stretch if you have athletic thighs.</li>
+        </ul>
+        <button class="btn" onclick="closeModal()">Got It!</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/men.js"></script>
+  <div class="toast" id="toast"></div>
+</body>
+</html>
